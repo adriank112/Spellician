@@ -4,7 +4,7 @@ from flask.cli import with_appcontext
 
 from App.database import create_db
 from App.main import app, migrate
-from App.controllers import ( create_user, get_all_users_json )
+from App.controllers import ( create_user, get_all_users_json, get_user )
 
 
 @app.cli.command("init")
@@ -14,11 +14,17 @@ def initialize():
 
 @app.cli.command("create-user")
 @click.argument("username")
+@click.argument("email")
 @click.argument("password")
-def create_user_command(username, password):
-    create_user(username, password)
+def create_user_command(username, email, password):
+    create_user(username, email, password)
     print(f'{username} created!')
 
 @app.cli.command("get-users")
 def get_users():
     print(get_all_users_json())
+
+@app.cli.command("get-user")
+@click.argument("id")
+def get_user(id):
+    print(get_user(id))

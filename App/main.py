@@ -21,7 +21,7 @@ from App.views import (
 
 views = [
     user_views,
-    api_views
+    api_views,
 ]
 
 def add_views(app, views):
